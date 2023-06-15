@@ -1,0 +1,19 @@
+{
+    "db": {
+        "dialect": "mysql",
+        "host": "localhost",
+        "username": "root",
+        "password": "",
+        "database": "e-commerce",
+        "port": 3306,
+        "ssl": false,
+        "pool": {
+            "max": 5,
+            "min": 0,
+            "acquire": 30000,
+            "idle": 10000
+        }
+    },
+    "TOKEN_SECRET":"arasu_ecommerce",
+    "salt": 11
+}
