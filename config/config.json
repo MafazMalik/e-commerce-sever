@@ -14,6 +14,6 @@
             "idle": 10000
         }
     },
-    "TOKEN_SECRET":"arasu_ecommerce",
+    "TOKEN_SECRET":"my_ecommerce",
     "salt": 11
 }

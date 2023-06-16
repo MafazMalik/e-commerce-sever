@@ -1,5 +1,5 @@
 // const { response } = require('express');
-const authRepo = require('../../repository/auth/auth.repo')
+const authRepo = require('../../repository/auth/auth.repo');
 const Common = require('../../utils/common/common');
 const jwtToken = require("../../controller/token/jwt_token");
 const expressConfig = require('../../config')();
