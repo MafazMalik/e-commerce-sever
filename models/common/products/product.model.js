@@ -2,7 +2,7 @@
 
 module.exports = (Sequelize, DataTypes) => {
     const Products = Sequelize.define('products', {
-        id: {
+        productId: {
             type: DataTypes.INTEGER(255),
             autoIncrement: true,
             unique: true,
