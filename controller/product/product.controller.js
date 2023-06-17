@@ -30,5 +30,19 @@ exports.getProduct = async (req, res) => {
 };
 
 exports.updateProduct = async (req, res) => {
-
+    try {
+        if (req.body) {
+            let apiResponse = {};
+            let responseUpdateProduct = await service.updateProduct(req);
+            if (responseUpdateProduct.statusCode == 200) {
+                apiResponse = responseUpdateProduct.data
+            }
+            sendResponse.sendResponseObj(responseUpdateProduct.statusCode, responseUpdateProduct.status, responseUpdateProduct.responseCode, responseUpdateProduct.message, apiResponse, res);
+        } else {
+            sendResponse.sendResponseObj(400, false, 'BAD_REQUEST', 'Invalid Payload', {}, res);
+        }
+    }
+    catch (error) {
+        sendResponse.sendResponseObj(500, false, error, error.message, {}, res);
+    }
 };
