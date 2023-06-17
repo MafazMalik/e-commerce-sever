@@ -124,3 +124,50 @@ exports.updateProduct = function (productData) {
         }
     })
 };
+
+exports.deleteProduct = function (productData) {
+    return new Promise(async (resolve) => {
+        let outputResponse = {};
+        try {
+            db.products.destroy({
+                where: {
+                    productId: productData.productId
+                }
+            }).then(num => {
+                console.log(num)
+                if (num) {
+                    outputResponse.errorStatus = false;
+                    outputResponse.errorCode = 'DELETE_SUCCESS';
+                    outputResponse.errorMessage = 'Deleted Successfully';
+                }
+                else {
+                    outputResponse.errorStatus = true;
+                    outputResponse.errorCode = 'DELETE_ERROR';
+                    outputResponse.errorMessage = 'Not deleted';
+                }
+                outputResponse.data = {};
+                resolve(outputResponse);
+            }).catch(error => {
+                outputResponse.errorStatus = true;
+                if (error.message.errorCode) {
+                    outputResponse.errorCode = error.message.errorCode;
+                    outputResponse.errorMessage = error.message.message;
+                } else {
+                    outputResponse.errorCode = 'DB_ERROR';
+                    outputResponse.errorMessage = error.message;
+
+                }
+
+                outputResponse.data = {};
+                resolve(outputResponse);
+            });
+        }
+        catch (error) {
+            outputResponse.errorStatus = true;
+            outputResponse.errorCode = error.code;
+            outputResponse.errorMessage = error.message;
+            outputResponse.data = {};
+            resolve(outputResponse);
+        }
+    })
+};

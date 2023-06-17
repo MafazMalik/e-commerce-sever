@@ -46,3 +46,21 @@ exports.updateProduct = async (req, res) => {
         sendResponse.sendResponseObj(500, false, error, error.message, {}, res);
     }
 };
+
+exports.deleteProduct = async (req, res) => {
+    try {
+        if (req.body) {
+            let apiResponse = {};
+            let responseDeleteProduct = await service.deleteProduct(req);
+            if (responseDeleteProduct.statusCode == 200) {
+                apiResponse = responseDeleteProduct.data
+            }
+            sendResponse.sendResponseObj(responseDeleteProduct.statusCode, responseDeleteProduct.status, responseDeleteProduct.responseCode, responseDeleteProduct.message, apiResponse, res);
+        } else {
+            sendResponse.sendResponseObj(400, false, 'BAD_REQUEST', 'Invalid Payload', {}, res);
+        }
+    }
+    catch (error) {
+        sendResponse.sendResponseObj(500, false, error, error.message, {}, res);
+    }
+}
